@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Life Dashboard</title>
+  <link rel="stylesheet" href="css/style.css" />
+  <!-- One-liner theme script: prevents flash on dark-mode reload (req 11.4) -->
+  <script>document.documentElement.dataset.theme = localStorage.getItem('dashboard_theme') === '"dark"' ? 'dark' : 'light';</script>
+</head>
+<body>
+
+  <!-- ── Top navigation bar ─────────────────────────────────────────────── -->
+  <header class="top-bar">
+    <span class="app-title">Life Dashboard</span>
+    <button id="theme-toggle-btn" class="btn btn-icon" aria-label="Toggle theme">🌙 Dark</button>
+  </header>
+
+  <!-- ── Main grid ──────────────────────────────────────────────────────── -->
+  <main class="dashboard-grid">
+
+    <!-- Widget 1: Greeting -->
+    <section class="widget widget--greeting" aria-label="Greeting">
+      <p id="greeting-time" class="greeting-time">--:--</p>
+      <p id="greeting-date" class="greeting-date">--</p>
+      <p id="greeting-phrase" class="greeting-phrase"></p>
+    </section>
+
+    <!-- Widget 2: Custom Name -->
+    <section class="widget widget--name" aria-label="Custom name">
+      <h2 class="widget-title">Your Name</h2>
+      <div class="input-row">
+        <input id="name-input" type="text" maxlength="50" placeholder="Enter your name…" aria-label="Your name" />
+        <button id="name-save-btn" class="btn btn-primary">Save</button>
+      </div>
+      <p id="name-error" class="error-msg" hidden></p>
+    </section>
+
+    <!-- Widget 3 & 4: Timer -->
+    <section class="widget widget--timer" aria-label="Focus timer">
+      <h2 class="widget-title">Focus Timer</h2>
+      <p id="timer-display" class="timer-display">25:00</p>
+      <div class="timer-controls">
+        <button id="timer-start-btn" class="btn btn-primary">Start</button>
+        <button id="timer-stop-btn"  class="btn btn-secondary" disabled>Stop</button>
+        <button id="timer-reset-btn" class="btn btn-secondary">Reset</button>
+      </div>
+      <div id="timer-notification" class="timer-notification" role="alert" aria-live="polite">
+        ✅ Session complete! Take a break.
+      </div>
+      <div class="duration-row">
+        <label for="timer-duration-input" class="label-sm">Duration (min)</label>
+        <input id="timer-duration-input" type="number" min="1" max="180" value="25" aria-label="Timer duration in minutes" />
+        <button id="timer-duration-btn" class="btn btn-secondary btn-sm">Set</button>
+      </div>
+      <p id="timer-duration-error" class="error-msg" hidden></p>
+    </section>
+
+    <!-- Widget 5–8: Task Manager -->
+    <section class="widget widget--tasks" aria-label="To-do list">
+      <h2 class="widget-title">To-Do List</h2>
+      <div class="input-row">
+        <input id="task-input" type="text" maxlength="255" placeholder="Add a task…" aria-label="New task title" />
+        <button id="task-add-btn" class="btn btn-primary">Add</button>
+      </div>
+      <p id="task-add-error" class="error-msg" hidden></p>
+      <div class="sort-row">
+        <label for="task-sort" class="label-sm">Sort:</label>
+        <select id="task-sort" aria-label="Sort tasks">
+          <option value="insertion">Default (insertion order)</option>
+          <option value="az">A → Z</option>
+          <option value="za">Z → A</option>
+          <option value="incomplete">Incomplete first</option>
+          <option value="complete">Complete first</option>
+        </select>
+      </div>
+      <ul id="task-list" class="task-list" aria-label="Task list"></ul>
+    </section>
+
+    <!-- Widget 9–10: Quick Links -->
+    <section class="widget widget--links" aria-label="Quick links">
+      <h2 class="widget-title">Quick Links</h2>
+      <div class="input-row">
+        <input id="link-label-input" type="text" maxlength="50" placeholder="Label" aria-label="Link label" />
+        <input id="link-url-input"   type="text" maxlength="2048" placeholder="https://…" aria-label="Link URL" />
+        <button id="link-add-btn" class="btn btn-primary">Add</button>
+      </div>
+      <p id="link-error" class="error-msg" hidden></p>
+      <div id="link-list" class="link-list" aria-label="Quick links list"></div>
+    </section>
+
+  </main>
+
+  <!-- ── Global overlays ───────────────────────────────────────────────── -->
+  <div id="toast" role="status" aria-live="polite"></div>
+
+  <script src="js/app.js"></script>
+</body>
+</html>

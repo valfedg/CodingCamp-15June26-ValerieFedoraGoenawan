@@ -1,0 +1,14 @@
+{
+  "name": "todo-life-dashboard",
+  "version": "1.0.0",
+  "description": "A single-page productivity dashboard",
+  "scripts": {
+    "test": "vitest --run"
+  },
+  "devDependencies": {
+    "vitest": "^1.6.0",
+    "fast-check": "^3.19.0",
+    "@vitest/coverage-v8": "^1.6.0",
+    "jsdom": "^24.1.0"
+  }
+}
